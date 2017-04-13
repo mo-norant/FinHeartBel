@@ -8,28 +8,45 @@ import { moveIn, fallIn, moveInLeft } from '../router.animations';
   templateUrl: './members.component.html',
   styleUrls: ['./members.component.css'],
   animations: [moveIn(), fallIn(), moveInLeft()],
-  host: {'[@moveIn]': ''}
+  host: { '[@moveIn]': '' }
 })
 export class MembersComponent implements OnInit {
   name: any;
   state: string = '';
 
-  constructor(public af: AngularFire,private router: Router) {
+  constructor(public af: AngularFire, private router: Router) {
+
+    this.router.navigateByUrl("/dashboard");
 
     this.af.auth.subscribe(auth => {
-      if(auth) {
+      if (auth) {
         this.name = auth;
+        console.log(auth.auth.photoURL);
       }
     });
 
+
   }
+
+
 
   logout() {
-     this.af.auth.logout();
-     this.router.navigateByUrl('/login');
+    this.af.auth.logout();
+    this.router.navigateByUrl('/login');
   }
 
 
-  ngOnInit() {
+  delete() {
+
+    this.af.auth.subscribe(login => {
+      if(login){
+        login.auth.delete().then(t => this.logout())
+      }
+    })
+
   }
+
+
+ngOnInit() {
+}
 }

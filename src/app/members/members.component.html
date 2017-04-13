@@ -1,11 +1,121 @@
-<div class="form-container" id="toolbar">
-    <header [@fallIn]="state">
-      <button (click)="logout()" class="basic-btn">Logout</button>
-    </header>
-    <div id="page" [@moveInLeft]="state">
-      <h2>Hey {{ name.auth.displayName }}!</h2>
+<header [@fallIn]="state">
+  <div class="navbar navbar-inverse">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="index.html"><img src="assets/images/logo_light.png" alt=""></a>
 
-      <img src="assets/images/filler.png" />
+      <ul class="nav navbar-nav pull-right visible-xs-block">
+        <li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
+      </ul>
     </div>
-    
+
+    <div class="navbar-collapse collapse" id="navbar-mobile">
+      <ul class="nav navbar-nav">
+        <li><a href="#">Dashboard</a></li>
+
+        <li class="dropdown mega-menu mega-menu-wide">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Mega <span class="caret"></span></a>
+
+          <div class="dropdown-menu dropdown-content">
+            <div class="dropdown-content-body">
+              <div class="row">
+                <div class="col-md-3">
+                  <span class="menu-heading underlined">Column 1 title</span>
+                  <ul class="menu-list">
+                    <li><a href="#">Link 1, column 1</a></li>
+                    <li><a href="#">Link 2, column 1</a></li>
+                    <li><a href="#">Link 3, column 1</a></li>
+                    <li><a href="#">Link 4, column 1</a></li>
+                  </ul>
+                </div>
+                <div class="col-md-3">
+                  <span class="menu-heading underlined">Column 2 title</span>
+                  <ul class="menu-list">
+                    <li><a href="#">Link 1, column 2</a></li>
+                    <li><a href="#">Link 2, column 2</a></li>
+                    <li><a href="#">Link 3, column 2</a></li>
+                    <li><a href="#">Link 4, column 2</a></li>
+                  </ul>
+                </div>
+                <div class="col-md-3">
+                  <span class="menu-heading underlined">Column 3 title</span>
+                  <ul class="menu-list">
+                    <li><a href="#">Link 1, column 3</a></li>
+                    <li><a href="#">Link 2, column 3</a></li>
+                    <li><a href="#">Link 3, column 3</a></li>
+                    <li><a href="#">Link 4, column 3</a></li>
+                  </ul>
+                </div>
+                <div class="col-md-3">
+                  <span class="menu-heading underlined">Column 4 title</span>
+                  <ul class="menu-list">
+                    <li><a href="#">Link 1, column 4</a></li>
+                    <li><a href="#">Link 2, column 4</a></li>
+                    <li><a href="#">Link 3, column 4</a></li>
+                    <li><a href="#">Link 4, column 4</a></li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </li>
+
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Classic menu <span class="caret"></span></a>
+          <ul class="dropdown-menu dropdown-menu-right">
+            <li><a href="#">Second level</a></li>
+            <li class="dropdown-submenu">
+              <a href="#">Second level with child</a>
+              <ul class="dropdown-menu">
+                <li><a href="#">Third level</a></li>
+                <li class="dropdown-submenu">
+                  <a href="#">Third level with child</a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Fourth level</a></li>
+                    <li><a href="#">Fourth level</a></li>
+                    <li><a href="#">Fourth level</a></li>
+                  </ul>
+                </li>
+                <li><a href="#">Third level</a></li>
+              </ul>
+            </li>
+            <li><a href="#">Second level</a></li>
+          </ul>
+        </li>
+      </ul>
+
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="#">Text link</a></li>
+
+
+
+        <li class="dropdown dropdown-user">
+          <a class="dropdown-toggle" data-toggle="dropdown">
+            <img [src]="name.auth.photoUrl" alt="">
+            <span>{{name.auth.displayName}}</span>
+            <i class="caret"></i>
+          </a>
+
+          <ul class="dropdown-menu dropdown-menu-right">
+            <li><a href="#"><i class="icon-user-plus"></i> My profile</a></li>
+            <li><a href="#"><i class="icon-coins"></i> My balance</a></li>
+            <li><a href="#"><span class="badge badge-warning pull-right">58</span> <i class="icon-comment-discussion"></i> Messages</a></li>
+            <li class="divider"></li>
+            <li><a href="#"><i class="icon-cog5"></i> Account settings</a></li>
+            <li><i class="icon-switch2"></i> <button (click)="delete()">Delete account</button></li>
+
+            <li><i class="icon-switch2"></i> <button (click)="logout()">Logout</button></li>
+
+
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+</header>
+
+
+<div [@moveInLeft]="state">
+<router-outlet name="dashboard"></router-outlet>
+
 </div>

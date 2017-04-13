@@ -5,36 +5,39 @@ import { HttpModule } from '@angular/http';
 import { AngularFireModule } from 'angularfire2';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
-import { EmailComponent } from './email/email.component';
 import { SignupComponent } from './signup/signup.component';
 import { MembersComponent } from './members/members.component';
 import { AuthGuard } from './auth.service';
 import { routes } from './app.routes';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 // Must export the config
 export const firebaseConfig = {
-  apiKey: 'AIzaSyAaTLLTBfT8-tlCXOKlp4LrwQzhVWjbM1Q',
-  authDomain: 'angular-pre.firebaseapp.com',
-  databaseURL: 'https://angular-pre.firebaseio.com',
-  storageBucket: 'angular-pre.appspot.com',
-  messagingSenderId: '796422970338'
+  apiKey: "AIzaSyCipIk2HHAC0cHIi63D-PbaQocDgHS7mok",
+  authDomain: "finheartbel.firebaseapp.com",
+  databaseURL: "https://finheartbel.firebaseio.com",
+  projectId: "finheartbel",
+  storageBucket: "finheartbel.appspot.com",
+  messagingSenderId: "1059985304838"
 };
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    EmailComponent,
     SignupComponent,
-    MembersComponent
+    MembersComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     AngularFireModule.initializeApp(firebaseConfig),
-    routes
+    routes,
+   
+
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]

@@ -49,6 +49,27 @@ export class LoginComponent implements OnInit {
       })
   }
 
+  onSubmit(formData) {
+    if(formData.valid) {
+      console.log(formData.value);
+      this.af.auth.login({
+        email: formData.value.email,
+        password: formData.value.password
+      },
+      {
+        provider: AuthProviders.Password,
+        method: AuthMethods.Password,
+      }).then(
+        (success) => {
+        console.log(success);
+        this.router.navigate(['/members']);
+      }).catch(
+        (err) => {
+        console.log(err);
+        this.error = err;
+      })
+    }
+  }
 
   ngOnInit() {
   }

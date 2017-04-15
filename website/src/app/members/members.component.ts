@@ -16,7 +16,6 @@ export class MembersComponent implements OnInit {
 
   constructor(public af: AngularFire, private router: Router) {
 
-    this.router.navigateByUrl("/dashboard");
 
     this.af.auth.subscribe(auth => {
       if (auth) {
@@ -24,6 +23,8 @@ export class MembersComponent implements OnInit {
         console.log(auth.auth.photoURL);
       }
     });
+    
+    this.router.navigateByUrl('/members/(dashboard:dashboard)');
 
 
   }

@@ -11,6 +11,8 @@ import { AuthGuard } from './auth.service';
 import { routes } from './app.routes';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
+import { SlimScrollModule } from 'ng2-slimscroll';
+
 
 // Must export the config
 export const firebaseConfig = {
@@ -36,6 +38,7 @@ export const firebaseConfig = {
     HttpModule,
     AngularFireModule.initializeApp(firebaseConfig),
     routes,
+    SlimScrollModule
    
 
   ],

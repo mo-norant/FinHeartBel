@@ -3,6 +3,7 @@ import { AngularFire, AuthProviders, AuthMethods } from 'angularfire2';
 import { Router } from '@angular/router';
 import { moveIn, fallIn, moveInLeft } from '../router.animations';
 
+
 @Component({
   selector: 'app-members',
   templateUrl: './members.component.html',
@@ -20,7 +21,7 @@ export class MembersComponent implements OnInit {
     this.af.auth.subscribe(auth => {
       if (auth) {
         this.name = auth;
-        console.log(auth.auth.photoURL);
+        this.name.auth.photoUrl = null;
       }
     });
     
@@ -49,5 +50,6 @@ export class MembersComponent implements OnInit {
 
 
 ngOnInit() {
+ 
 }
 }

@@ -12,12 +12,18 @@ export const router: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
     { path: 'login', component: LoginComponent },
     { path: 'signup', component: SignupComponent },
-    { path: 'members', component: MembersComponent, canActivate: [AuthGuard], children: [
-        { path: 'dashboard', component: DashboardComponent , outlet: 'dashboard'}
-    ] },
-    
-        
-    
+    {
+        path: 'members', component: MembersComponent, canActivate: [AuthGuard], children: [
+            {
+                path: 'dashboard', component: DashboardComponent, outlet: 'dashboard', data: {
+                    name: 'Dashboard'
+                }
+            }
+        ]
+    },
+
+
+
 
 
 ]

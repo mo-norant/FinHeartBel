@@ -22,10 +22,12 @@ export class MembersComponent implements OnInit {
       if (auth) {
         this.name = auth;
         this.name.auth.photoUrl = null;
+
+        this.router.navigate(['/members', {outlets: {'dashboard': 'dashboard'}}]);
       }
     });
     
-    this.router.navigateByUrl('/members/(dashboard:dashboard)');
+    
 
 
   }

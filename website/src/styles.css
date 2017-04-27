@@ -1,6 +1,9 @@
 
-
-
+html {
+  width: auto;
+  height:auto;
+    overflow: scroll;
+}
 
 .loading {
   width: 30px;

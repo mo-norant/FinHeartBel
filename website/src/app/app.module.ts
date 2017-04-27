@@ -11,6 +11,7 @@ import { AuthGuard } from './auth.service';
 import { routes } from './app.routes';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ChartsModule } from 'ng2-charts';
+import { UploadzoneComponent } from './uploadzone/uploadzone.component';
 
 
 
@@ -30,7 +31,8 @@ export const firebaseConfig = {
     LoginComponent,
     SignupComponent,
     MembersComponent,
-    DashboardComponent
+    DashboardComponent,
+    UploadzoneComponent
   ],
   imports: [
     BrowserModule,

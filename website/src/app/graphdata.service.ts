@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFire, AuthProviders, AuthMethods } from 'angularfire2';
-import { TestData } from './testdata';
+//import { TestData } from './testdata';
 
 @Injectable()
 export class GraphdataService {
@@ -25,15 +25,6 @@ export class GraphdataService {
   }
 
 
-  writetodatabase(){
-
-  if(this.user){
-    const promise = this.af.database.object('/data/'+this.user.uid).set(TestData);
-      promise.then(_ => console.log('success+ /data/'+this.user.uid))
-       .catch(err => console.log(err, 'You dont have access!'));
-  }
-
-  }
-
+  
 
 }

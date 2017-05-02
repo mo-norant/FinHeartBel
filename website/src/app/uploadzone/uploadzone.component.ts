@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+//import { GraphdataService}
 
 @Component({
   selector: 'app-uploadzone',
@@ -12,4 +13,9 @@ export class UploadzoneComponent implements OnInit {
   ngOnInit() {
   }
 
+
+testupload(event){
+//  service.
+
+}
 }

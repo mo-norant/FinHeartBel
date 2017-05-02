@@ -2,3 +2,7 @@
 overflow:scroll !important;
 
 }
+
+canvas {
+    width:50%;
+}

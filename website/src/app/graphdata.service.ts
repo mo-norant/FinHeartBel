@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { AngularFire, AuthProviders, AuthMethods } from 'angularfire2';
-//import { TestData } from './testdata';
 
 @Injectable()
 export class GraphdataService {

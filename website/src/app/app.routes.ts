@@ -8,6 +8,9 @@ import { AuthGuard } from './auth.service';
 import { SignupComponent } from './signup/signup.component';
 import { DashboardComponent } from './dashboard/dashboard.component'
 
+import { UploadzoneComponent } from './uploadzone/uploadzone.component';
+
+
 export const router: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
     { path: 'login', component: LoginComponent },
@@ -16,6 +19,11 @@ export const router: Routes = [
         path: 'members', component: MembersComponent, canActivate: [AuthGuard], children: [
             {
                 path: 'dashboard', component: DashboardComponent, outlet: 'dashboard', data: {
+                    name: 'Dashboard'
+                }
+            },
+            {
+                path: 'upload', component: UploadzoneComponent, outlet: 'dashboard', data: {
                     name: 'Dashboard'
                 }
             }

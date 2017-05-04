@@ -1,4 +1,4 @@
-import {trigger, state, animate, style, transition} from '@angular/core';
+/*import {trigger, state, animate, style, transition} from '@angular/core';
 
 export function moveIn() {
   return trigger('moveIn', [
@@ -35,4 +35,4 @@ export function moveInLeft() {
       animate('.6s .2s ease-in-out', style({opacity:'1', transform: 'translateX(0)'}))
     ])
   ]);
-}
+}*/

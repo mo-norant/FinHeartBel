@@ -1,8 +1,7 @@
 
 html {
-  width: auto;
-  height:auto;
-    overflow: scroll;
+ 
+  overflow: scroll;
 }
 
 .loading {

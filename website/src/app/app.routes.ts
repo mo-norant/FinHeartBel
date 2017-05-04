@@ -11,6 +11,8 @@ import { DashboardComponent } from './dashboard/dashboard.component'
 import { UploadzoneComponent } from './uploadzone/uploadzone.component';
 
 
+
+
 export const router: Routes = [
     { path: '', redirectTo: 'login', pathMatch: 'full' },
     { path: 'login', component: LoginComponent },
@@ -28,7 +30,8 @@ export const router: Routes = [
                 }
             }
         ]
-    },
+    }
+    
 
 
 

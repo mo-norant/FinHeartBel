@@ -1,0 +1,96 @@
+<body class="login-container">
+  <!-- Page container -->
+  <div class="page-container">
+
+    <!-- Page content -->
+    <div class="page-content">
+
+      <!-- Main content -->
+      <div class="content-wrapper">
+
+        <!-- Content area -->
+        <div class="content">
+
+
+          <!-- Simple login form -->
+          <form #formData='ngForm' (ngSubmit)="onSubmit(formData)">
+            <div class="panel panel-body login-form">
+              <div class="text-center">
+                <div class="icon-object border-slate-300 text-slate-300"><i class="icon-pencil"></i></div>
+                <h5 class="content-group">Create an account<small class="display-block">Enter your credentials below</small></h5>
+              </div>
+              <div class="text-center"> <a routerLink="/login" id="goback">Go back</a>
+              </div>
+              <span class="help-block text-danger">{{error}}</span>
+              <div class="form-group has-feedback has-feedback-left">
+                <input (ngModel)="email" name="email" type="text" class="form-control" placeholder="Email" required>
+                <div class="form-control-feedback">
+                  <i class="icon-user text-muted"></i>
+                </div>
+              </div>
+
+              <div class="form-group has-feedback has-feedback-left">
+                <input (ngModel)="username" name="username" type="text" class="form-control" placeholder="Username" required>
+                <div class="form-control-feedback">
+                  <i class="icon-user text-muted"></i>
+                </div>
+              </div>
+
+              <div class="form-group has-feedback has-feedback-left">
+                <input (ngModel)="password" name="password" type="password" class="form-control" placeholder="Password" required>
+                <div class="form-control-feedback">
+                  <i class="icon-lock2 text-muted"></i>
+                </div>
+              </div>
+
+              <div class="form-group has-feedback has-feedback-left">
+                <label class="text-semibold">Your profilepicture:</label>
+                <div class="media no-margin-top">
+                  <div class="media-left">
+                    <a href="#"><img src="assets/images/placeholder.jpg" style="width: 58px; height: 58px; border-radius: 2px;" alt=""></a>
+                  </div>
+
+                  <div class="media-body">
+                    <input type="file" (change)="fileChangeEvent($event)" class="file-styled">
+                    <span class="help-block">Accepted formats: gif, png, jpg. Max file size 2Mb</span>
+                    <div class="progress-bar progress-bar-warning" style="width: {{percentage}}%">
+                      <span>{{percentage}}% Complete</span>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="form-group">
+                <button type="submit" [disabled]="!formData.valid" class="btn btn-primary btn-block">Sign up</button>
+              </div>
+
+              <div class="text-center">
+                <a routerLink="/login" routerLinkActive="active">All ready a login? <strong>Login</strong></a>
+
+
+              </div>
+            </div>
+          </form>
+          <!-- /simple login form -->
+
+
+          <!-- Footer -->
+          <div class="footer text-muted text-center">
+            &copy; 2015. <a href="#">E-Health app</a> by <a href="" target="_blank">Norant.be</a>
+          </div>
+          <!-- /footer -->
+
+        </div>
+        <!-- /content area -->
+
+      </div>
+      <!-- /main content -->
+
+    </div>
+    <!-- /page content -->
+
+  </div>
+  <!-- /page container -->
+
+</body>

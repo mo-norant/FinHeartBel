@@ -1,0 +1,52 @@
+  <!-- Page content -->
+  <div class="page-content">
+
+    <!-- Main content -->
+    <div class="content-wrapper">
+
+ 
+
+
+      <!-- Content area -->
+      <div class="content">
+
+            <h1 class="no-margin">{{naam}}</h1>
+
+          <div class="panel-body">
+            <h6 class="text-semibold">Start your development with no hassle!</h6>
+            <p class="content-group">Common problem of templates is that all code is deeply integrated into the core. This limits your freedom in
+              decreasing amount of code, i.e. it becomes pretty difficult to remove unnecessary code from the project. Limitless
+              allows you to remove unnecessary and extra code easily just by removing the path to specific LESS file with
+              component styling. All plugins and their options are also in separate files. Use only components you actually
+              need!
+            </p>
+
+          </div>
+
+          <div class="panel panel-flat">
+								<div class="panel-heading">
+									<h6 class="panel-title">Demo Graph</h6>
+								</div>
+								
+								<div class="panel-body">
+                  <div style="display: block;">
+                <canvas baseChart width="200" height="200"
+                [datasets]="lineChartData"
+                [labels]="lineChartLabels"
+                [options]="lineChartOptions"
+                [colors]="lineChartColors"
+                [legend]="lineChartLegend"
+                [chartType]="lineChartType">
+                </canvas>
+    </div>
+								</div>
+							</div>
+        </div>
+        <!-- /simple panel -->
+
+
+      </div>
+      <!-- /content area -->
+
+    </div>
+    <!-- /main content -->

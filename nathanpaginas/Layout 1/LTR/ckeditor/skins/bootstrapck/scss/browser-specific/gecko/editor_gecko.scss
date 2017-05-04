@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*
 Copyright (c) 2003-2014, CKSource - Frederico Knabben. All rights reserved.
 For licensing, see LICENSE.md or http://ckeditor.com/license
@@ -23,3 +24,30 @@ This file contains styles to used by all Gecko based browsers (Firefox) only.
     margin-bottom: -1px;
     margin-top: 1px;
 }
+=======
+/*
+Copyright (c) 2003-2014, CKSource - Frederico Knabben. All rights reserved.
+For licensing, see LICENSE.md or http://ckeditor.com/license
+*/
+
+/*
+editor_gecko.css
+==================
+
+This file contains styles to used by all Gecko based browsers (Firefox) only.
+*/
+
+/* Base it on editor.css, overriding it with styles defined in this file. */
+@import "../../components/editor";
+
+.cke_bottom
+{
+    padding-bottom: 3px;
+}
+
+.cke_combo_text
+{
+    margin-bottom: -1px;
+    margin-top: 1px;
+}
+>>>>>>> 17ac0006dbaf48ec4ae618aedb13490bf1ad0e01

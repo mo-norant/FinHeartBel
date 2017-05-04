@@ -12,7 +12,7 @@ import * as firebase from 'firebase';
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css'],
  // animations: [moveIn(), fallIn()],
-  //host: { '[@moveIn]': '' }
+ // host: { '[@moveIn]': '' }
 })
 export class SignupComponent implements OnInit {
 

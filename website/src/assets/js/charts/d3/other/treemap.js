@@ -63,7 +63,7 @@ $(function () {
             .append("g")
                 .attr("transform", "translate(.5,.5)")
                 .style("font-size", 12)
-                .style("overflow", "hidden")
+                .style("overflow", "scroll")
                 .style("text-indent", 2);
 
 

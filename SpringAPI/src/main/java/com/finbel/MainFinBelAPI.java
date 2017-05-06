@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
+@RequestMapping("/json")
 public class MainFinBelAPI {
 	
 	
@@ -29,9 +30,16 @@ public class MainFinBelAPI {
 	
 	
 
-	@RequestMapping("/greeting")
-	public @ResponseBody String greeting(){
-		return "hello" ;
+	@RequestMapping(value="{name}", method = RequestMethod.GET)
+	public @ResponseBody Shop getShopInJSON(@PathVariable String name) {
+
+		Shop shop = new Shop();
+		shop.setName(name);
+		shop.setStaffName(new String[]{"TEST1", "Test1"});
+
+		
+		return shop;
+
 	}
 	
 	@RequestMapping("/randomgetallen")

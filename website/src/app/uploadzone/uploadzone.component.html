@@ -10,17 +10,39 @@
     <!-- Content area -->
     <div class="content">
 
-      <h1 class="no-margin">Upload Zone</h1>
+      
+        <h1 class="">Uploadzone</h1>
+        <div class="row">
+        <div class="col-md-6">
+          <div class="panel-body">
+           
+            <h6 class="text-semibold">Your ECG history</h6>
+            <div class="media-body">
+            </div>
 
-      <div class="panel-body">
-        <h6 class="text-semibold">Start your development with no hassle!</h6>
-        <button (click)="testupload()" type="button" class="btn btn-default">Test upload</button>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="panel-body">
+            <h6 class="text-semibold">Upload a new ECG</h6>
+            <div class="media-body">
+              <input type="file" (change)="fileChangeEvent($event)" accept=".json" class="file-styled">
+              <span class="help-block">Accepted format: json</span>
+              <div class="pace-demo" style="padding-bottom: 30px;">
+                <div class="theme_bar_xs">
+                  <div class="pace_progress" data-progress-text="0%" data-progress="0" [style.width.%]="percentage"> {{percentage}}%</div>
+                </div>
+              </div>
 
+            </div>
+
+          </div>
+
+        </div>
       </div>
-
       <div class="panel panel-flat">
         <div class="panel-heading">
-          <h6 class="panel-title">Demo Graph</h6>
+          <h6 class="panel-title">Title</h6>
         </div>
 
       </div>
@@ -28,5 +50,3 @@
   </div>
 </div>
 <!-- /simple panel -->
-
-

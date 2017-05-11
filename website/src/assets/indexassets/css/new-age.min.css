@@ -174,9 +174,9 @@ header.indexheader {
     width: 100%;
     min-height: auto;
     overflow-y: hidden;
-    background: url(../img/bg-pattern.png), #7b4397;
-    background: url(../img/bg-pattern.png), -webkit-linear-gradient(to left, #7b4397, #dc2430);
-    background: url(../img/bg-pattern.png), linear-gradient(to left, #7b4397, #dc2430);
+    background: url(../img/bg-pattern.png),  #004cc6;
+    background: url(../img/bg-pattern.png), -webkit-linear-gradient(to left, #004cc6, #dc2430);
+    background: url(../img/bg-pattern.png), linear-gradient(to left,  #004cc6, #dc2430);
     color: #fff
 }
 
@@ -189,7 +189,8 @@ header .header-content {
 header .header-content .header-content-inner {
     position: relative;
     max-width: 500px;
-    margin: 0 auto
+    margin: 0 auto;
+        text-align: right;
 }
 
 header .header-content .header-content-inner h1 {
@@ -341,8 +342,8 @@ section.features .feature-item h3 {
 
 section.features .feature-item i {
     font-size: 80px;
-    background: -webkit-linear-gradient(to left, #7b4397, #dc2430);
-    background: linear-gradient(to left, #7b4397, #dc2430);
+    background: -webkit-linear-gradient(to left, #dc2430, #004cc6);
+    background: linear-gradient(to left, #dc2430 #004cc6);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent
 }

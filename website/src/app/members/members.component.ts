@@ -14,7 +14,7 @@ import { Router } from '@angular/router';
 export class MembersComponent implements OnInit {
   name: any;
   state: string = '';
-
+  
   constructor(public af: AngularFire, private router: Router) {
 
 
@@ -22,7 +22,7 @@ export class MembersComponent implements OnInit {
       if (auth) {
         this.name = auth;
         this.name.auth.photoUrl = null;
-
+        console.log(this.name.uid)
         this.router.navigate(['/members', {outlets: {'dashboard': 'dashboard'}}]);
       }
     });
@@ -53,7 +53,7 @@ export class MembersComponent implements OnInit {
   truncate(){
 
     
-    this.af.database.object("/").remove().then((success) => alert("Database truncated"));
+    this.af.database.object("userstorage/users/" + this.name.uid).remove().then((success) => alert("Database truncated"));
   }
 
 

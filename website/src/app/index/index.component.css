@@ -31,6 +31,11 @@ body {
     webkit-tap-highlight-color: #222
 }
 
+.row{
+    max-width: inherit;
+    display: inherit;
+}
+
 .navbar-default,
 .navbar-default .navbar-header .navbar-brand,
 h1,
@@ -175,8 +180,8 @@ header {
     min-height: auto;
     overflow-y: hidden;
     background:/* url(../../assets/indexassets/img/bg-pattern.png),*/ #7b4397;
-    background:/* url(../../assets/indexassets/img/bg-pattern.png),*/ -webkit-linear-gradient(to left, #7b4397, #dc2430);
-    background:/* url(../../assets/indexassets/img/bg-pattern.png),*/linear-gradient(to left, #7b4397, #dc2430);
+    background:/* url(../../assets/indexassets/img/bg-pattern.png),*/ -webkit-linear-gradient(to left, #052fa7, #dc2430);
+    background:/* url(../../assets/indexassets/img/bg-pattern.png),*/linear-gradient(to left, #052fa7, #dc2430);
     color: #fff
 }
 
@@ -343,8 +348,8 @@ section.features .feature-item h3 {
 
 section.features .feature-item i {
     font-size: 80px;
-    background: -webkit-linear-gradient(to left, #7b4397, #dc2430);
-    background: linear-gradient(to left, #7b4397, #dc2430);
+    background: -webkit-linear-gradient(to left, #052fa7, #dc2430);
+    background: linear-gradient(to left, #052fa7, #dc2430);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent
 }

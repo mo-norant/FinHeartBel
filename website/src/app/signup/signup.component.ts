@@ -47,7 +47,7 @@ export class SignupComponent implements OnInit {
           success.auth.updateProfile({
             displayName: formData.value.username,
             photoURL: this.imageUrl
-          }).then(succes => this.router.navigate(['/members']));
+          }).then(succes => this.router.navigate(['/members/(dashboard:dashboard)']));
 
 
 

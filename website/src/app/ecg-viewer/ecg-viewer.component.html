@@ -19,15 +19,18 @@
             <div class="panel panel-flat pl-15">
               <h6 class="text-semibold">Upload a new ECG</h6>
               <div class="media-body">
-              
-              <h1>TEST</h1>
+
+                <h5>select your ECG</h5>
+                <select [(ngModel)]="selectedValue">
+      <option *ngFor="let c of countries" [ngValue]="c">{{c.name}}</option>
+                  </select>
 
               </div>
             </div>
           </div>
 
         </div>
-       
+
 
 
       </div>

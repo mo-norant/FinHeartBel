@@ -9,6 +9,7 @@ import { SignupComponent } from './signup/signup.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { UploadzoneComponent } from './uploadzone/uploadzone.component';
 import { IndexComponent } from './index/index.component';
+import { ECGViewerComponent } from './ecg-viewer/ecg-viewer.component';
 
 
 
@@ -27,6 +28,12 @@ export const router: Routes = [
             },
             {
                 path: 'upload', component: UploadzoneComponent, outlet: 'dashboard', data: {
+                    name: 'Dashboard'
+
+                }
+            },
+            {
+                path: 'egc-viewer', component: ECGViewerComponent, outlet: 'dashboard', data: {
                     name: 'Dashboard'
 
                 }

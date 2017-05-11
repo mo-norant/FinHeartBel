@@ -47,8 +47,6 @@ export class UploadzoneComponent implements OnInit {
   }
 
 
-  
-
   public fileChangeEvent(fileInput: any) {
 
     this.af.auth.subscribe(auth => {
@@ -71,7 +69,8 @@ export class UploadzoneComponent implements OnInit {
               if (error) {
                 alert("data not pushed to server" + error)
               } else {
-                console.log('data pushed')
+                
+                
               }
             });
             
@@ -79,7 +78,6 @@ export class UploadzoneComponent implements OnInit {
 
 
           }
-
           reader.readAsText(file);
 
         }

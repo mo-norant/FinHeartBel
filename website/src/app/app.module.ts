@@ -13,6 +13,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { ChartsModule } from 'ng2-charts';
 import { UploadzoneComponent } from './uploadzone/uploadzone.component';
 import { IndexComponent } from './index/index.component';
+import { ECGViewerComponent } from './ecg-viewer/ecg-viewer.component';
 
 
 
@@ -34,7 +35,8 @@ export const firebaseConfig = {
     MembersComponent,
     DashboardComponent,
     UploadzoneComponent,
-    IndexComponent
+    IndexComponent,
+    ECGViewerComponent
   ],
   imports: [
     BrowserModule,

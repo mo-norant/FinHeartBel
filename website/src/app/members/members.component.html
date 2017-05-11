@@ -1,9 +1,8 @@
-
-<header class="membersheader" >
+<header class="membersheader">
 
   <div class="navbar navbar-inverse">
     <div class="navbar-header">
-      <a class="navbar-brand page-scroll" href="#page-top">FinHeartBel</a>
+      <a class="navbar-brand page-scroll" routerLink="/">FinHeartBel</a>
 
 
       <ul class="nav navbar-nav pull-right visible-xs-block">
@@ -18,15 +17,15 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">Tools <span class="caret"></span></a>
           <ul class="dropdown-menu dropdown-menu-right">
             <li><a [routerLink]="[{ outlets: { dashboard: 'upload' }}]">Upload Zone</a></li>
-           <li><a [routerLink]="[{ outlets: { dashboard: 'egc-viewer' }}]">ECG-Viewer</a></li>
+            <li><a [routerLink]="[{ outlets: { dashboard: 'egc-viewer' }}]">ECG-Viewer</a></li>
 
-            
+
           </ul>
         </li>
       </ul>
 
       <ul class="nav navbar-nav navbar-right">
-        <li><i class="icon-github"></i><a href="https://github.com/mo-norant/FinHeartBel">GitHub Source code</a></li>
+        <li><a href="https://github.com/mo-norant/FinHeartBel"><i class="icon-github"></i>GitHub Source code</a></li>
 
 
 
@@ -39,11 +38,12 @@
 
           <ul class="dropdown-menu dropdown-menu-right">
 
-            <li class="divider"></li>
-            <li><a href="#"><i class="icon-cog5"></i> Account settings</a></li>
-            <li><i class="icon-switch2"></i> <button (click)="delete()">Delete account</button></li>
-            <li><i class="icon-switch2"></i> <button (click)="truncate()">Delete all data !</button></li>
+
             <li><i class="icon-switch2"></i> <button (click)="logout()">Logout</button></li>
+            <li class="divider"></li>
+            <li class="text-danger"><i class="icon-switch2"></i> <button (click)="delete()">Delete account</button></li>
+            <li class="text-danger"><i class="icon-switch2"></i> <button (click)="truncate()">Delete all data</button></li>
+
 
 
           </ul>

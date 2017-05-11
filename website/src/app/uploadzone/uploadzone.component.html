@@ -15,12 +15,12 @@
       <div class="row">
         <div class="col-md-12">
           <div class="panel-body">
-            <h1 class="">Uploadzone</h1>
-            <div class="panel panel-flat">
-              <h6 class="text-semibold">Upload a new ECG</h6>
-              <div class="media-body">
-                <input type="file" (change)="fileChangeEvent($event)" accept=".json" class="file-styled">
-                <span class="help-block">Accepted format: json</span>
+            <h1 class="pl-5">Uploadzone</h1>
+            <div class="panel panel-flat pl-5">
+              <h6 class="text-semibold pl-5">Upload a new ECG</h6>
+              <div class="media-body pl-5">
+                <input class="pl-5" type="file" (change)="fileChangeEvent($event)" accept=".json" class="file-styled">
+                <span class="help-block pl-5">Accepted format: json</span>
                 <div [hidden]="!succesDialog" class="alert alert-danger alert-styled-left alert-bordered">
                   <button type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span></button>
                   <span class="text-semibold">Oh snap!</span> Change a few things up and <a href="#" class="alert-link">try submitting again</a>.

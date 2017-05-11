@@ -10,40 +10,50 @@
     <!-- Content area -->
     <div class="content">
 
-      
-        <h1 class="">Uploadzone</h1>
-        <div class="row">
-        <div class="col-md-6">
+
+
+      <div class="row">
+        <div class="col-md-12">
           <div class="panel-body">
-           
+            <h1 class="">Uploadzone</h1>
+            <div class="panel panel-flat">
+              <h6 class="text-semibold">Upload a new ECG</h6>
+              <div class="media-body">
+                <input type="file" (change)="fileChangeEvent($event)" accept=".json" class="file-styled">
+                <span class="help-block">Accepted format: json</span>
+                <div [hidden]="!succesDialog" class="alert alert-danger alert-styled-left alert-bordered">
+                  <button type="button" class="close" data-dismiss="alert"><span>×</span><span class="sr-only">Close</span></button>
+                  <span class="text-semibold">Oh snap!</span> Change a few things up and <a href="#" class="alert-link">try submitting again</a>.
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+        </div>
+        <div class="col-md-12">
+          <div class="panel-body">
+
             <h6 class="text-semibold">Your ECG history</h6>
             <div class="media-body">
-            </div>
-
-          </div>
-        </div>
-        <div class="col-md-6">
-          <div class="panel-body">
-            <h6 class="text-semibold">Upload a new ECG</h6>
-            <div class="media-body">
-              <input type="file" (change)="fileChangeEvent($event)" accept=".json" class="file-styled">
-              <span class="help-block">Accepted format: json</span>
-              <div class="pace-demo" style="padding-bottom: 30px;">
-                <div class="theme_bar_xs">
-                  <div class="pace_progress" data-progress-text="0%" data-progress="0" [style.width.%]="percentage"> {{percentage}}%</div>
+              <div class="panel panel-flat">
+                <div class="panel-heading">
+                  <h6 class="panel-title">History</h6>
+                  <ul class="list">
+                    <li class="listitem" *ngFor="let item of items | async">
+                      {{item.$key }}
+                    </li>
+                  </ul>
                 </div>
+
+
               </div>
 
             </div>
-
           </div>
 
         </div>
-      </div>
-      <div class="panel panel-flat">
-        <div class="panel-heading">
-          <h6 class="panel-title">Title</h6>
-        </div>
+
 
       </div>
     </div>

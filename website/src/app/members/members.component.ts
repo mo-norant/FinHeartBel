@@ -44,13 +44,15 @@ export class MembersComponent implements OnInit {
 
     this.af.auth.subscribe(login => {
       if(login){
-        login.auth.delete().then(t => this.logout())
+        login.auth.delete().then(succes => this.logout())
       }
     })
 
   }
 
   truncate(){
+
+    
     this.af.database.object("/").remove().then((success) => alert("Database truncated"));
   }
 

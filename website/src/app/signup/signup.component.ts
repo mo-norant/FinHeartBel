@@ -11,8 +11,8 @@ import * as firebase from 'firebase';
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css'],
- // animations: [moveIn(), fallIn()],
- // host: { '[@moveIn]': '' }
+  // animations: [moveIn(), fallIn()],
+  // host: { '[@moveIn]': '' }
 })
 export class SignupComponent implements OnInit {
 
@@ -34,12 +34,10 @@ export class SignupComponent implements OnInit {
       }).then(
         (success) => {
 
-     //     var storageRef = firebase.storage().ref().child("profilepictures/" + success.uid);
+          //   var storageRef = firebase.storage().ref().child("profilepictures/" + success.uid);
+          //   var task = storageRef.put(this.image);
 
 
-       //   var task = storageRef.put(this.image);
-
-        
 
           console.log({
             displayName: formData.value.username,

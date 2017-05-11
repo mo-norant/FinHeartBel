@@ -12,10 +12,9 @@ import { AngularFire, AuthProviders, AuthMethods } from 'angularfire2';
 })
 export class UploadzoneComponent implements OnInit {
 
-  @Input() percentage: number = 50;
+  @Input() percentage: number = 100;
 
-  constructor(public af: AngularFire) { 
-    this.getECGhistory();
+  constructor(public af: AngularFire) {
 
   }
 
@@ -24,48 +23,42 @@ export class UploadzoneComponent implements OnInit {
   }
 
 
-  public getECGhistory() {
-
-    this.af.auth.subscribe(auth => {
-      if (auth) {
-
-        const ref = this.af.database.object('"userstorage/users/'+ auth.uid +"");
-
-        var storageRef = firebase.storage().ref();
-
-        var userref = storageRef.child("userstorage/users/" + auth.uid + "/");
-        
-
-
-
-
-
-      }
-    }
-
-    )
-  }
-
-
-
-
   public fileChangeEvent(fileInput: any) {
 
-
-
     this.af.auth.subscribe(auth => {
       if (auth) {
+
+        var file = fileInput.target.files[0]; // FileList object
+        if (file) {
+
+
+          var reader = new FileReader();
+
+          reader.onload = function (e){
+            
+            var json = JSON.parse(reader.result);
+            console.log(json);
+
+          var datum = new Date().toString().replace(/ /g, '');
+          var ref = firebase.database().ref(("userstorage/users/" + auth.uid + "/" + datum + "&&&" + fileInput.target.files[0].name.split('.json').join(""))).set(json);
+            
+            
         
-        var datum = new Date().toString().replace(/ /g,'');
-        console.log(datum);
-        const userref = this.af.database.object("userstorage/users/" + auth.uid + "/" + datum + "&&&" + fileInput.target.files[0].name.split('.json').join("")).set(fileInput.target.files[0]);
+          }
+          
+          reader.readAsText(file);
 
 
-       
+        }
 
-        console.log(fileInput.target.files[0]);
+
+
       }
-    });
+
+
+
+
+    })
 
 
 

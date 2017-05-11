@@ -513,3 +513,9 @@ img::-moz-selection {
     color: #fff;
     background: 0 0
 }
+
+/* MO */
+
+nav#page-top {
+    background: gray;
+}

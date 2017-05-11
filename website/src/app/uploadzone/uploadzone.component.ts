@@ -28,26 +28,33 @@ export class UploadzoneComponent implements OnInit {
     this.af.auth.subscribe(auth => {
       if (auth) {
 
+        var file = fileInput.target.files[0]; // FileList object
+        if (file) {
 
 
-        var datum = new Date().toString().replace(/ /g, '');
-        const userref = this.af.database.object("userstorage/users/" + auth.uid + "/" + datum + "&&&" + fileInput.target.files[0].name.split('.json').join("")).set("fileInput.target.files[0]");
+          var reader = new FileReader();
 
+          reader.onload = function (e) {
+            var text = reader.result;
+            console.log(text)
+          }
 
-        console.log(fileInput.target.files[0]);
+          reader.readAsText(file);
+
+        }
 
 
 
       }
-    });
+
+      var datum = new Date().toString().replace(/ /g, '');
+
+
+      // const userref = this.af.database.object("userstorage/users/" + auth.uid + "/" + datum + "&&&" + fileInput.target.files[0].name.split('.json').join("")).set();
+
+    })
 
 
 
   }
-
-
-
-
-
-
 }

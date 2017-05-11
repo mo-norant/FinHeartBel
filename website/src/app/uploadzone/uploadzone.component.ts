@@ -34,12 +34,20 @@ export class UploadzoneComponent implements OnInit {
 
           var reader = new FileReader();
 
-          reader.onload = function (e) {
-            var text = reader.result;
-            console.log(text)
-          }
+          reader.onload = function (e){
+            
+            var json = JSON.parse(reader.result);
+            console.log(json);
 
+          var datum = new Date().toString().replace(/ /g, '');
+          var ref = firebase.database().ref(("userstorage/users/" + auth.uid + "/" + datum + "&&&" + fileInput.target.files[0].name.split('.json').join(""))).set(json);
+            
+            
+        
+          }
+          
           reader.readAsText(file);
+
 
         }
 
@@ -47,10 +55,8 @@ export class UploadzoneComponent implements OnInit {
 
       }
 
-      var datum = new Date().toString().replace(/ /g, '');
 
 
-      // const userref = this.af.database.object("userstorage/users/" + auth.uid + "/" + datum + "&&&" + fileInput.target.files[0].name.split('.json').join("")).set();
 
     })
 

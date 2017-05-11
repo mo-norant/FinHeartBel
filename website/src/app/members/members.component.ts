@@ -50,6 +50,10 @@ export class MembersComponent implements OnInit {
 
   }
 
+  truncate(){
+    this.af.database.object("/").remove().then((success) => alert("Database truncated"));
+  }
+
 
 ngOnInit() {
  

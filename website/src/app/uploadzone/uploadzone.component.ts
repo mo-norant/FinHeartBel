@@ -29,6 +29,7 @@ export class UploadzoneComponent implements OnInit {
     this.af.auth.subscribe(auth => {
       if (auth) {
 
+        const ref = this.af.database.object('"userstorage/users/'+ auth.uid +"");
 
         var storageRef = firebase.storage().ref();
 
@@ -54,10 +55,10 @@ export class UploadzoneComponent implements OnInit {
 
     this.af.auth.subscribe(auth => {
       if (auth) {
-        var storageRef = firebase.database().ref();
+        
         var datum = new Date().toString().replace(/ /g,'');
         console.log(datum);
-        var userref = storageRef.child("userstorage/users/" + auth.uid + "/" + datum + "&&&" + fileInput.target.files[0].name.split('.json').join("")).set(fileInput.target.files[0]);
+        const userref = this.af.database.object("userstorage/users/" + auth.uid + "/" + datum + "&&&" + fileInput.target.files[0].name.split('.json').join("")).set(fileInput.target.files[0]);
 
 
        

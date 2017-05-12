@@ -14,6 +14,7 @@ import { ChartsModule } from 'ng2-charts';
 import { UploadzoneComponent } from './uploadzone/uploadzone.component';
 import { IndexComponent } from './index/index.component';
 import { ECGViewerComponent } from './ecg-viewer/ecg-viewer.component';
+import { FooterComponent } from './footer/footer.component';
 
 
 
@@ -36,7 +37,8 @@ export const firebaseConfig = {
     DashboardComponent,
     UploadzoneComponent,
     IndexComponent,
-    ECGViewerComponent
+    ECGViewerComponent,
+    FooterComponent
   ],
   imports: [
     BrowserModule,

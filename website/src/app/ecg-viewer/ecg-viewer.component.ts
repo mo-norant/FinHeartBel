@@ -15,46 +15,35 @@ export class ECGViewerComponent implements OnInit {
   ECGs;
   currentPosition;
   currentECG;
-  Xaxis
-  
 
-  
-   public lineChartData:Array<any> = [
-    {data: [65, 59, 80, 81, 56, 55, 40], label: 'Series A'},
-    {data: [28, 48, 40, 19, 86, 27, 90], label: 'Series B'},
-    {data: [18, 48, 77, 9, 100, 27, 40], label: 'Series C'}
-  ];
-  public lineChartOptions:any = {
-    responsive: true
+
+  public lineChartLabels: Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+
+  public lineChartData: Array<any> = [
+    { data: [],
+       label: 'ECG'
+      }];
+  public lineChartOptions: any = {
+    responsive: true,
+    scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero:true
+                }
+            }]
+        }
   };
-  public lineChartColors:Array<any> = [
+  public lineChartColors: Array<any> = [
     { // grey
-      backgroundColor: 'rgba(148,159,177,0.2)',
-      borderColor: 'rgba(148,159,177,1)',
-      pointBackgroundColor: 'rgba(148,159,177,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
-    },
-    { // dark grey
-      backgroundColor: 'rgba(77,83,96,0.2)',
-      borderColor: 'rgba(77,83,96,1)',
-      pointBackgroundColor: 'rgba(77,83,96,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(77,83,96,1)'
-    },
-    { // grey
-      backgroundColor: 'rgba(148,159,177,0.2)',
-      borderColor: 'rgba(148,159,177,1)',
-      pointBackgroundColor: 'rgba(148,159,177,1)',
-      pointBorderColor: '#fff',
-      pointHoverBackgroundColor: '#fff',
-      pointHoverBorderColor: 'rgba(148,159,177,0.8)'
+      fill: false,
+      borderColor: 'red',
+      pointRadius: 0,
+      borderWidth: 1
+
     }
   ];
-  public lineChartLegend:boolean = true;
-  public lineChartType:string = 'line';
+  public lineChartLegend: boolean = true;
+  public lineChartType: string = 'line';
 
 
 
@@ -63,10 +52,10 @@ export class ECGViewerComponent implements OnInit {
       if (auth) {
         this.user = auth
 
-        this.itemsobservable = af.database.list('userstorage/users/' + this.user.uid);      
+        this.itemsobservable = af.database.list('userstorage/users/' + this.user.uid);
         this.itemsobservable.subscribe(succes => {
           this.ECGs = succes;
-          for(let item of succes){
+          for (let item of succes) {
             this.ECGnames.push(item.$key)
           }
         })
@@ -81,38 +70,37 @@ export class ECGViewerComponent implements OnInit {
   ngOnInit() {
   }
 
-   selectionChanged(deviceValue) {
+  selectionChanged(deviceValue) {
     console.log(deviceValue);
     this.currentPosition = this.ECGnames.indexOf(deviceValue);
     this.currentECG = this.ECGs[this.currentPosition];
-    
-    this.getXaxis(this.currentECG)
+    this.lineChartData[0].data = this.currentECG.measurement1.sensor1
+    this.lineChartLabels = this.getXaxis(this.currentECG)
   }
 
-  getXaxis(ECG){
+  getXaxis(ECG) {
     let period, xaxis = [];
-    period = 1/ECG.measurement1.frequency;
-    console.log(ECG.measurement1.sensor1.length)
-    
-    for(let i = 0 ; i< ECG.measurement1.sensor1.length ; i++){
+    period = 1 / ECG.measurement1.frequency;
 
-      if(i == 0){
+    for (let i = 0; i < ECG.measurement1.sensor1.length; i++) {
+
+      if (i == 0) {
         xaxis[i] = 0
-      }else{
-        xaxis[i] = xaxis[i-1] + period;
+      } else {
+        xaxis[i] = xaxis[i - 1] + period;
       }
 
     }
+    return xaxis;
 
-    alert(xaxis)
 
 
 
 
   }
 
-  
 
-  
+
+
 
 }

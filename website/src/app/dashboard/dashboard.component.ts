@@ -17,6 +17,8 @@ export class DashboardComponent implements OnInit {
   public lineChartOptions:any = {
     responsive: true
   };
+    public lineChartLabels:Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
+
   public lineChartColors:Array<any> = [
     { // grey
       backgroundColor: 'rgba(148,159,177,0.2)',

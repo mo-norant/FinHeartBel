@@ -15,7 +15,8 @@ export class ECGViewerComponent implements OnInit {
   ECGs;
   currentPosition;
   currentECG;
-
+  show : boolean = false
+  
 
   public lineChartLabels: Array<any> = ['January', 'February', 'March', 'April', 'May', 'June', 'July'];
 
@@ -77,6 +78,7 @@ export class ECGViewerComponent implements OnInit {
     this.currentECG = this.ECGs[this.currentPosition];
     this.lineChartData[0].data = this.currentECG.measurement1.sensor1
     this.lineChartLabels = this.getXaxis(this.currentECG)
+    this.show = true
   }
 
   getXaxis(ECG) {

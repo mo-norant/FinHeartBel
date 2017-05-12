@@ -31,7 +31,7 @@
 
         <li class="dropdown dropdown-user">
           <a class="dropdown-toggle" data-toggle="dropdown">
-            <img [src]="name.auth.photoUrl" alt="">
+            <i class="icon-user"></i>
             <span>{{name.auth.displayName}}</span>
             <i class="caret"></i>
           </a>
@@ -41,8 +41,8 @@
 
             <li><i class="icon-switch2"></i> <button (click)="logout()">Logout</button></li>
             <li class="divider"></li>
-            <li class="text-danger"><i class="icon-switch2"></i> <button (click)="delete()">Delete account</button></li>
-            <li class="text-danger"><i class="icon-switch2"></i> <button (click)="truncate()">Delete all data</button></li>
+            <li class="text-danger"><i class="icon-user-cancel"></i> <button (click)="delete()">Delete account</button></li>
+            <li class="text-danger"><i class="icon-folder-remove"></i> <button (click)="truncate()">Delete all data</button></li>
 
 
 

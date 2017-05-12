@@ -58,7 +58,9 @@ export class ECGViewerComponent implements OnInit {
           for (let item of succes) {
             this.ECGnames.push(item.$key)
           }
-        })
+          this.selectionChanged(this.ECGnames[0])
+        }
+        )
       }
       else {
         this.error = 'Could not find uid from user';
@@ -71,7 +73,6 @@ export class ECGViewerComponent implements OnInit {
   }
 
   selectionChanged(deviceValue) {
-    console.log(deviceValue);
     this.currentPosition = this.ECGnames.indexOf(deviceValue);
     this.currentECG = this.ECGs[this.currentPosition];
     this.lineChartData[0].data = this.currentECG.measurement1.sensor1

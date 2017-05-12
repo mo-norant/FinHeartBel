@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ISlimScrollOptions } from 'ng2-slimscroll';
 
 @Component({
   selector: 'dashboard',
@@ -7,7 +6,6 @@ import { ISlimScrollOptions } from 'ng2-slimscroll';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  opts: ISlimScrollOptions;
   naam: string = 'Dashboard';
 
   
@@ -51,11 +49,7 @@ export class DashboardComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-     this.opts = {
-      position: 'right',
-      barBackground: '#000000',
-
-    }
+     
   }
 
 }

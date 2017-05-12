@@ -16,26 +16,35 @@
         <div class="col-md-12">
           <div class="panel-body">
             <h1 class="">ECG-viewer</h1>
-            <div class="panel panel-flat pl-15">
+            <div class="panel panel-flat pl-20">
               <h6 class="text-semibold">Select an ECG to analyze measurement properties</h6>
               <div class="media-body">
 
                 <h5>select your ECG</h5>
-                <select [(ngModel)]="selectedValue">
+                <select (change)="selectionChanged($event.target.value)">
          <option *ngFor="let c of ECGnames" [ngValue]="ECGnames">{{c}}</option>
                 
                   </select>
 
               </div>
+
+              <div class="panel-heading">
+                <h6 class="panel-title">Demo Graph</h6>
+              </div>
+
+              <div class="panel-body">
+                <div style="display: block;">
+                  <canvas baseChart width="200" height="200" [datasets]="lineChartData" [options]="lineChartOptions" [colors]="lineChartColors"
+                    [legend]="lineChartLegend" [chartType]="lineChartType">
+                  </canvas>
+                </div>
+
+              </div>
+
             </div>
+
           </div>
-
         </div>
-
-
-
       </div>
     </div>
-  </div>
-</div>
-<!-- /simple panel -->
+    <!-- /simple panel -->

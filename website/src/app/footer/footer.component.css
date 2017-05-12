@@ -2,3 +2,8 @@ footer{
      background-color: gray;
     border-color: gray;
 }
+
+a {
+    color:white;
+    font-weight: bolder;
+}

@@ -27,7 +27,7 @@ export class GraphdataService {
 
 public getReferencesECGs(){
   
-this.af.database.list
+return
 
 
 

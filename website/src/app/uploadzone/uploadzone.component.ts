@@ -25,12 +25,7 @@ export class UploadzoneComponent implements OnInit {
       if (auth) {
         this.uid = auth.uid;
 
-        this.items = af.database.list('userstorage/users/' + this.uid);
-        
-        
-
-        
-        
+        this.items = af.database.list('userstorage/users/' + this.uid);      
 
       }
       else {

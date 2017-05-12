@@ -4,6 +4,7 @@ import { AngularFire, AuthProviders, AuthMethods } from 'angularfire2';
 @Injectable()
 export class GraphdataService {
   user;
+  items;
   
   constructor(public af: AngularFire) { 
 
@@ -23,6 +24,15 @@ export class GraphdataService {
 
   }
 
+
+public getReferencesECGs(){
+  
+this.af.database.list
+
+
+
+
+}
 
   
 

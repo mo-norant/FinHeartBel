@@ -4,3 +4,8 @@
 .icon-github{
     margin-right: 5px;
 }
+
+.navbar-inverse {
+    background-color: gray;
+    border-color: gray;
+}

@@ -23,6 +23,10 @@
                 <h5>select your ECG</h5>
                 <select [(ngModel)]="selectedValue">
       <option *ngFor="let c of countries" [ngValue]="c">{{c.name}}</option>
+                 <option value="volvo">Volvo</option>
+                <option value="saab">Saab</option>
+                <option value="mercedes">Mercedes</option>
+                <option value="audi">Audi</option>
                   </select>
 
               </div>

@@ -15,6 +15,9 @@
         <div class="col-md-12">
           <div class="panel-body">
             <h1 class="">ECG-viewer</h1>
+            <div *ngIf="!show" class="loader" >
+              <img src="../../assets/images/loader/loader.gif" alt="">
+            </div>
             <div *ngIf="show">
               <div class="panel panel-flat pl-20">
                 <h6 class="text-semibold">Select an ECG to analyze measurement properties</h6>

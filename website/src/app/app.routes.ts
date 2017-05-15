@@ -11,7 +11,7 @@ import { UploadzoneComponent } from './uploadzone/uploadzone.component';
 import { IndexComponent } from './index/index.component';
 import { ECGViewerComponent } from './ecg-viewer/ecg-viewer.component';
 import { ArrythmiaComponent } from './arrythmia/arrythmia.component'
-
+import { Notfound404Component} from './notfound404/notfound404.component'
 
 
 export const router: Routes = [

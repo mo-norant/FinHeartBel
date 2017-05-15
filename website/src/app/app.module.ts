@@ -16,6 +16,7 @@ import { IndexComponent } from './index/index.component';
 import { ECGViewerComponent } from './ecg-viewer/ecg-viewer.component';
 import { FooterComponent } from './footer/footer.component';
 import { ArrythmiaComponent } from './arrythmia/arrythmia.component';
+import { Notfound404Component } from './notfound404/notfound404.component';
 
 
 
@@ -40,7 +41,8 @@ export const firebaseConfig = {
     IndexComponent,
     ECGViewerComponent,
     FooterComponent,
-    ArrythmiaComponent
+    ArrythmiaComponent,
+    Notfound404Component
   ],
   imports: [
     BrowserModule,

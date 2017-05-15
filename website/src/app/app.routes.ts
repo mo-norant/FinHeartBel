@@ -10,13 +10,14 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { UploadzoneComponent } from './uploadzone/uploadzone.component';
 import { IndexComponent } from './index/index.component';
 import { ECGViewerComponent } from './ecg-viewer/ecg-viewer.component';
+import { ArrythmiaComponent } from './arrythmia/arrythmia.component'
 
 
 
 export const router: Routes = [
-   // { path: '', redirectTo: 'login', pathMatch: 'full' },
     { path: 'login', component: LoginComponent },
     { path: '', component: IndexComponent },
+    { path: 'arrythmia', component: ArrythmiaComponent},
     { path: 'signup', component: SignupComponent },
     {
         path: 'members', component: MembersComponent, canActivate: [AuthGuard], children: [

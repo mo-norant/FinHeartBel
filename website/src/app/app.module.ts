@@ -15,6 +15,7 @@ import { UploadzoneComponent } from './uploadzone/uploadzone.component';
 import { IndexComponent } from './index/index.component';
 import { ECGViewerComponent } from './ecg-viewer/ecg-viewer.component';
 import { FooterComponent } from './footer/footer.component';
+import { ArrythmiaComponent } from './arrythmia/arrythmia.component';
 
 
 
@@ -38,7 +39,8 @@ export const firebaseConfig = {
     UploadzoneComponent,
     IndexComponent,
     ECGViewerComponent,
-    FooterComponent
+    FooterComponent,
+    ArrythmiaComponent
   ],
   imports: [
     BrowserModule,

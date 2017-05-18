@@ -275,6 +275,7 @@ section.download {
     position: relative;
     background-image: url(../../assets/indexassets/img/mockup.jpg)!important;
     background-size: 100%!important;
+    background-position: bottom!important;
 }
 
 section.download h2 {

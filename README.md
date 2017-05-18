@@ -1,6 +1,8 @@
 # FinHeartBel
-@nathan todo
-One Paragraph of project description goes here
+FinHeartBel is brought to you by an international collaboration between Finnish and Belgian Students.
+Healthcare is the main focus from our project. 
+We provide our users a simple ECG (electrocardiogram), one of the simplest and oldest cardiac investigations available, and will notify them when thresholds are exceeded.
+ECGs provide a wealth of useful information and remains an essential part of the assessment of cardiac patients.
 
 ## Getting Started
 @mo TODO

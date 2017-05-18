@@ -271,7 +271,7 @@ section h2 {
 }
 
 section.download {
-    padding: 150px 0;
+    padding: 100px 0;
     position: relative;
     background-image: url(../../assets/indexassets/img/mockup.jpg)!important;
     background-size: 100%!important;
@@ -307,7 +307,7 @@ section.download .badges .badge-link img {
 }
 
 section.features .section-heading {
-    margin-bottom: 100px
+    margin-bottom: 30px
 }
 
 section.features .section-heading h2 {
@@ -325,7 +325,7 @@ section.features .feature-item {
 }
 
 section.features .device-container {
-    margin-bottom: 100px
+    margin-bottom: 0px
 }
 
 @media (min-width:992px) {
@@ -340,7 +340,7 @@ section.features .device-container {
 
 section.features .feature-item {
     text-align: center;
-    margin-bottom: 100px
+    margin-bottom: 0px
 }
 
 section.contact h2,
@@ -352,6 +352,7 @@ section.cta .cta-content h2 {
 section.features .feature-item h3 {
     font-size: 30px
 }
+
 
 section.features .feature-item i {
     font-size: 80px;

@@ -1,3 +1,7 @@
 .loader{
     width: 50px;
 }
+
+select {
+    height: 30px;
+}

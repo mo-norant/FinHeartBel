@@ -133,6 +133,10 @@ p {
     background-color: transparent
 }
 
+nav {
+    background-color: #962857!important;
+}
+
 @media (min-width:768px) {
     .navbar-default {
         background-color: transparent;

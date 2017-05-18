@@ -24,12 +24,19 @@ public class GreetingController {
     Random random = new Random();
     return String.valueOf(random.nextInt());
   }
+  @RequestMapping("/momo")
+  public void nieuwalgo() {
+    QRS_test qrs_test = new QRS_test();
+  }
+
 
   @RequestMapping("/mo")
   public void aangekomen() {
-  int frequency = getFrequencylocal();
+  int frequency = 100;
     QRSDetector2 qrsDetector = OSEAFactory.createQRSDetector2(frequency);
     ArrayList<String> list = getECGarray();
+
+
 
     for (int i = 0; i < list.size(); i++) {
       int result = qrsDetector.QRSDet(Integer.valueOf(list.get(i)));
@@ -53,6 +60,10 @@ public class GreetingController {
       }
     }
   }
+
+
+
+
 
 
   @SuppressWarnings("unchecked")

@@ -103,15 +103,25 @@ export class ECGViewerComponent implements OnInit {
   selectionChanged(deviceValue) {
     this.currentPosition = this.ECGnames.indexOf(deviceValue);
     this.currentECG = this.ECGs[this.currentPosition];
-    this.ecgdata[0].data = this.currentECG.measurement1.sensor1
+    this.ecgdata[0].data = this.currentECG.measurement1.sensor1;
     this.lineChartLabels = this.getXaxis(this.currentECG);
-    this.filterdata[0].data = this.ecgtoolkit.filterStage(this.ecgdata[0].data);
-    this.filterLabels = this.getXaxisforothers(this.filterdata[0].data);
-    this.derivativedata[0].data = this.ecgtoolkit.differentiation(this.filterdata[0].data);
-    this.derivativeLabels = this.getXaxisforothers(this.filterdata[0].data);
+    console.log(this.ecgdata[0].data)
+
+    this.squaringdata[0].data = this.ecgtoolkit.squariation(this.ecgdata[0].data);
+    this.squaringLabels = this.getXaxisforothers(this.ecgdata[0].data);
+    console.log(this.filterdata[0].data)
+    /*
+    this.derivativedata[0].data = this.ecgtoolkit.differentiation(this.filterdata[0].data)
+    this.derivativeLabels = this.getXaxisforothers(this.derivativedata[0].data);
+    console.log(this.derivativedata[0].data)
+
+
+
     this.squaringdata[0].data = this.ecgtoolkit.squariation(this.derivativedata[0].data);
     this.squaringLabels = this.getXaxisforothers(this.derivativedata[0].data);
-
+    console.log(this.squaringdata[0].data)
+ 
+    */
     this.show = true
   }
 

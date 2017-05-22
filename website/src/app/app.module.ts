@@ -17,7 +17,7 @@ import { ECGViewerComponent } from './ecg-viewer/ecg-viewer.component';
 import { FooterComponent } from './footer/footer.component';
 import { ArrythmiaComponent } from './arrythmia/arrythmia.component';
 import { Notfound404Component } from './notfound404/notfound404.component';
-
+import { EcgtoolkitService} from './ecgtoolkit.service'
 
 
 // Must export the config
@@ -53,7 +53,7 @@ export const firebaseConfig = {
     ChartsModule
 
   ],
-  providers: [AuthGuard],
+  providers: [AuthGuard, EcgtoolkitService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -52,8 +52,10 @@ export class MembersComponent implements OnInit {
 
   truncate(){
 
-    
-    this.af.database.object("userstorage/users/" + this.name.uid).remove().then((success) => alert("Database truncated"));
+        this.af.database.list('userstorage/users/' + this.name.uid).subscribe(succes => console.log(succes))
+        this.af.database.list('userstorage/users/' + this.name.uid).remove().then(
+          () => alert("referentie verwijderd"), error => console.log(error)
+        )
   }
 
 

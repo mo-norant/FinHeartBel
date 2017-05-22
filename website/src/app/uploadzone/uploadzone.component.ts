@@ -19,6 +19,7 @@ export class UploadzoneComponent implements OnInit {
   uid;  
   error;
   succesDialog = false;
+  show: boolean = true;
 
   constructor(public af: AngularFire) {
     af.auth.subscribe(auth => {
@@ -26,13 +27,14 @@ export class UploadzoneComponent implements OnInit {
         this.uid = auth.uid;
 
        this.items = af.database.list('userstorage/users/' + this.uid);
-
+       
+       
 
       }
       else {
         this.error = 'Could not find uid from user';
       }
-    })
+    }, error => alert(error) , () => {this.show = false; console.log("history loaded")})
 
 
 

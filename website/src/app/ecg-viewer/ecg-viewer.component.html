@@ -33,18 +33,51 @@
                 </div>
 
                 <div class="panel-heading">
-                  <h6 class="panel-title">Demo Graph</h6>
+                  <h6 class="panel-title">Actual ECG</h6>
                 </div>
 
                 <div class="panel-body">
                   <div style="display: block;">
-                    <canvas baseChart width="200" height="200" [datasets]="lineChartData" [options]="lineChartOptions" [colors]="lineChartColors"
+                    <canvas baseChart width="200" height="200" [datasets]="filterdata" [options]="lineChartOptions" [colors]="lineChartColors"
                       [labels]="lineChartLabels" [legend]="lineChartLegend" [chartType]="lineChartType">
+                    </canvas>
+                  </div>
+                   
+                </div><div class="panel-heading">
+                  <h6 class="panel-title">Highpass and lowpass filtration</h6>
+                </div>
+
+                <div class="panel-body">
+                  <div style="display: block;">
+                    <canvas baseChart width="200" height="200" [datasets]="filterdata" [options]="lineChartOptions" [colors]="lineChartColors"
+                      [labels]="filterLabels" [legend]="lineChartLegend" [chartType]="lineChartType">
+                    </canvas>
+                  </div>
+ 
+                </div><div class="panel-heading">
+                  <h6 class="panel-title">Second order derivative function</h6>
+                </div>
+
+                <div class="panel-body">
+                  <div style="display: block;">
+                    <canvas baseChart width="200" height="200" [datasets]="derivativedata" [options]="lineChartOptions" [colors]="lineChartColors"
+                      [labels]="derivativeLabels" [legend]="lineChartLegend" [chartType]="lineChartType">
+                    </canvas>
+                  </div>
+
+                </div><div class="panel-heading">
+                  <h6 class="panel-title">Squaring function</h6>
+                </div>
+
+                <div class="panel-body">
+                  <div style="display: block;">
+                    <canvas baseChart width="200" height="200" [datasets]="squaringdata" [options]="lineChartOptions" [colors]="lineChartColors"
+                      [labels]="squaringLabels" [legend]="lineChartLegend" [chartType]="lineChartType">
                     </canvas>
                   </div>
 
                 </div>
-
+                  
               </div>
             </div>
         </div>

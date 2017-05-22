@@ -33,7 +33,9 @@
         </div>
         <div class="col-md-12">
           <div class="panel-body">
-
+            <div *ngIf="!show" class="loader">
+              <img src="../../assets/images/loader/loader.gif" alt="">
+            </div>
             <h6 class="text-semibold">Your ECG upload history</h6>
             <div class="media-body">
               <div class="panel panel-flat">

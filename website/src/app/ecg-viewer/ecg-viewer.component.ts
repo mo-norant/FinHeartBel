@@ -105,23 +105,20 @@ export class ECGViewerComponent implements OnInit {
     this.currentECG = this.ECGs[this.currentPosition];
     this.ecgdata[0].data = this.currentECG.measurement1.sensor1;
     this.lineChartLabels = this.getXaxis(this.currentECG);
-    console.log(this.ecgdata[0].data)
+    console.log(this.ecgdata[0].data )
+    let highpass = this.ecgtoolkit.highPass(5,this.ecgdata[0].data,5);
+    let lowpass = this.ecgtoolkit.lowPass(this.ecgdata[0].data,5);
+    let qrs = this.ecgtoolkit.QRS(this.ecgdata[0].data);
 
-    this.squaringdata[0].data = this.ecgtoolkit.squariation(this.ecgdata[0].data);
-    this.squaringLabels = this.getXaxisforothers(this.ecgdata[0].data);
-    console.log(this.filterdata[0].data)
-    /*
-    this.derivativedata[0].data = this.ecgtoolkit.differentiation(this.filterdata[0].data)
-    this.derivativeLabels = this.getXaxisforothers(this.derivativedata[0].data);
-    console.log(this.derivativedata[0].data)
+     for (var key in qrs) {
 
+      if(qrs[key] != 0){
+        console.log(qrs[key])
+      }
 
-
-    this.squaringdata[0].data = this.ecgtoolkit.squariation(this.derivativedata[0].data);
-    this.squaringLabels = this.getXaxisforothers(this.derivativedata[0].data);
-    console.log(this.squaringdata[0].data)
- 
-    */
+      
+     }
+   
     this.show = true
   }
 

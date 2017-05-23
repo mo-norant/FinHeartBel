@@ -11,78 +11,62 @@
     <div class="content">
 
 
-    
-        <div class="col-md-8">
-          <div class="panel-body">
-            <h1 class="">ECG-viewer</h1>
-            <div *ngIf="!show" class="loader" >
-              <img src="../../assets/images/loader/loader.gif" alt="">
-            </div>
-            <div *ngIf="show">
-              <div class="panel panel-flat pl-20">
-                <h6 class="text-semibold">Select an ECG to analyze measurement properties</h6>
-                <div class="media-body">
 
-                  <h5>select your ECG</h5>
-                    <div style="width:30%">
-                  <select (change)="selectionChanged($event.target.value)">
+      <div class="panel-body">
+
+        <h1 class="">ECG-viewer</h1>
+        <div *ngIf="!show" class="loader">
+          <img src="../../assets/images/loader/loader.gif" alt="">
+        </div>
+        <div *ngIf="show">
+          <div class="panel panel-flat pl-20">
+
+            <h6 class="text-semibold">Select an ECG to analyze measurement properties</h6>
+            <div class="media-body">
+
+              <h5>select your ECG</h5>
+              <div style="width:30%">
+                <select (change)="selectionChanged($event.target.value)">
          <option *ngFor="let c of ECGnames" [ngValue]="ECGnames">{{c}}</option>
                 
                   </select>
-                    </div>
-                </div>
-
-                <div class="panel-heading">
-                  <h6 class="panel-title">Actual ECG</h6>
-                </div>
-
-                <div class="panel-body">
-                  <div style="display: block;">
-                    <canvas baseChart width="200" height="200" [datasets]="ecgdata" [options]="lineChartOptions" [colors]="lineChartColors"
-                      [labels]="lineChartLabels" [legend]="lineChartLegend" [chartType]="lineChartType">
-                    </canvas>
-                  </div>
-                   
-                </div><div class="panel-heading">
-                  <h6 class="panel-title">Highpass and lowpass filtration</h6>
-                </div>
-
-                <div class="panel-body">
-                  <div style="display: block;">
-                    <canvas baseChart width="200" height="200" [datasets]="filterdata" [options]="lineChartOptions" [colors]="lineChartColors"
-                      [labels]="filterLabels" [legend]="lineChartLegend" [chartType]="lineChartType">
-                    </canvas>
-                  </div>
- 
-                </div><div class="panel-heading">
-                  <h6 class="panel-title">Second order derivative function</h6>
-                </div>
-
-                <div class="panel-body">
-                  <div style="display: block;">
-                    <canvas baseChart width="200" height="200" [datasets]="derivativedata" [options]="lineChartOptions" [colors]="lineChartColors"
-                      [labels]="derivativeLabels" [legend]="lineChartLegend" [chartType]="lineChartType">
-                    </canvas>
-                  </div>
-
-                </div><div class="panel-heading">
-                  <h6 class="panel-title">Squaring function</h6>
-                </div>
-
-                <div class="panel-body">
-                  <div style="display: block;">
-                    <canvas baseChart width="200" height="200" [datasets]="squaringdata" [options]="lineChartOptions" [colors]="lineChartColors"
-                      [labels]="squaringLabels" [legend]="lineChartLegend" [chartType]="lineChartType">
-                    </canvas>
-                  </div>
-
-                </div>
-                  
               </div>
             </div>
+
+            <div class="panel-heading">
+              <h6 class="panel-title">Metrics</h6>
+            </div>
+
+            <div class="panel-body">
+              <h6>The by algorithm calculated count of beats <strong>{{beatcount}}</strong>.</h6>
+              <h6>Interpolation of BPM-count <strong>{{BPM | number : '1.0-0'}} BPM</strong>.</h6>
+              <h6>QRS complexes found at indexes:</h6>
+              <ul>
+                <li *ngFor="let index of beatIndexes">
+                  {{ index }}
+                </li>
+              </ul>
+            </div>
+
+
+
+            <div class="panel-heading">
+              <h6 class="panel-title">Actual ECG</h6>
+            </div>
+
+            <div class="panel-body">
+              <div style="display: block;">
+                <canvas baseChart [datasets]="ecgdata" [options]="lineChartOptions" [colors]="lineChartColors" [labels]="lineChartLabels"
+                  [legend]="lineChartLegend" [chartType]="lineChartType">
+                </canvas>
+              </div>
+
+
+            </div>
+          </div>
         </div>
       </div>
-        <div class="col-md-4">
-        </div>
     </div>
-    <!-- /simple panel -->
+
+  </div>
+  <!-- /simple panel -->

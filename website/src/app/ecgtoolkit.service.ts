@@ -11,7 +11,7 @@ export class EcgtoolkitService {
 
   public highPass(nsamp, data, M) {
     let highPass = {}
-    let constant =  1/ M;
+    let constant = 1 / M;
 
     for (let i = 0; i < data.length; i++) {
       let y1 = 0;
@@ -24,7 +24,7 @@ export class EcgtoolkitService {
       y2 = data[y2_index];
 
       let y1_sum = 0;
-      for (let j= i; j > i - M; j--) {
+      for (let j = i; j > i - M; j--) {
         let x_index = i - (i - j);
         if (x_index < 0) {
           x_index = nsamp + x_index;
@@ -117,6 +117,13 @@ export class EcgtoolkitService {
 
   }
 
+  public calculateBPMLinear(beats, period) {
+
+    let multiplier = 60 / period;
+    let bpm = beats * multiplier
+    return bpm
+
+  }
 
 
 }

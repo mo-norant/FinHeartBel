@@ -4,229 +4,126 @@ import { Observable } from 'rxjs/Observable';
 @Injectable()
 export class EcgtoolkitService {
 
-  M = 5;
-  N = 7
-  WINSIZE = 130;
-  HP_CONSTANT = 100
-
   constructor() {
 
   }
 
 
+  public highPass(nsamp, data, M) {
+    let highPass = {}
+    let constant = 1 / M;
+
+    for (let i = 0; i < data.length; i++) {
+      let y1 = 0;
+      let y2 = 0;
+
+      let y2_index = i - ((M + 1) / 2);
+      if (y2_index < 0) {
+        y2_index = nsamp + y2_index;
+      }
+      y2 = data[y2_index];
+
+      let y1_sum = 0;
+      for (let j = i; j > i - M; j--) {
+        let x_index = i - (i - j);
+        if (x_index < 0) {
+          x_index = nsamp + x_index;
+        }
+        y1_sum += data[x_index];
+      }
+
+      y1 = constant * y1_sum;
+      highPass[i] = y2 - y1;
+
+    }
+
+    return highPass;
 
 
+  }
 
+  public lowPass(data, M) {
+    let lowpass = {}
+    for (let i = 0; i < data.length; i++) {
+      let sum = 0;
+      if (i + 30 < data.length) {
+        for (let j = i; j < i + 30; j++) {
+          let current = data[j] * data[j];
+          sum += current;
+        }
+      }
+      else if (i + 30 >= data.length) {
+        let over = i + 30 - data.length;
+        for (let j = i; j < data.length; j++) {
+          let current = data[j] * data[j];
+          sum += current;
+        }
+        for (let j = 0; j < over; j++) {
+          let current = data[j] * data[j];
+          sum += current;
+        }
+      }
 
-  public getECGAtIndex(data) {
+      lowpass[i] = sum;
+    }
 
-    //circular buffer for input ecg signal
-    // we need to keep a history of M + 1 samples for HP filter
+    return lowpass;
+  }
 
-    let ecg_circ_buff = [this.M + 1];
-    let ecg_circ_WR_idx = 0;
-    let ecg_circ_RD_idx = 0;
+  public QRS(data) {
+    let QRS = {}
 
-
-    // circular buffer for input ecg signal
-    // we need to keep a history of N+1 samples for LP filter
-
-    let hp_circ_buff = [this.N + 1];
-    let hp_circ_WR_idx = 0;
-    let hp_circ_RD_idx = 0;
-
-    // LP filter outputs a single point for every input point
-    // This goes straight to adaptive filtering for eval
-
-    let next_eval_pt = 0;
-    let QRS = [data.length];
-
-    // running sums for HP and LP filters, values shifted in FILO
-
-    let hp_sum = 0;
-    let lp_sum = 0;
-
-    // parameters for adaptive thresholding
     let treshold = 0;
-    let triggered = false;
-    let trig_time = 0;
-    let win_max = 0;
-    let win_idx = 0;
 
-    for (let i = 0; i < data.length; i++) {
-      ecg_circ_buff[ecg_circ_WR_idx++] = data[i];
-      ecg_circ_WR_idx %= (this.M + 1);
+    for (let i = 0; i < 200; i++) {
+      if (data[i] > treshold) {
+        treshold = data[i];
+      }
+    }
+    let frame = 2000;
 
-      /* High pass filtering */
-      if (i < this.M) {
-        // first fill buffer with enough points for HP filter
-        hp_sum += ecg_circ_buff[ecg_circ_RD_idx];
-        hp_circ_buff[hp_circ_WR_idx] = 0;
+    for (let i = 0; i < data.length; i += frame) {
+      let max = 0;
+      let index = 0;
+      if (i + frame > data.length) {
+        index = data.length;
       }
       else {
-        hp_sum += ecg_circ_buff[ecg_circ_RD_idx];
-
-        let tmp = ecg_circ_RD_idx - this.M;
-        if (tmp < 0) {
-          tmp += this.M + 1;
-        }
-        hp_sum -= ecg_circ_buff[tmp];
-
-        let y1 = 0;
-        let y2 = 0;
-
-        tmp = (ecg_circ_RD_idx - ((this.M + 1) / 2));
-        if (tmp < 0) {
-          tmp += this.M + 1;
-        }
-        y2 = ecg_circ_buff[tmp];
-
-        y1 = this.HP_CONSTANT * hp_sum;
-
-        hp_circ_buff[hp_circ_WR_idx] = y2 - y1;
+        index = i + frame;
       }
-
-      ecg_circ_RD_idx++;
-      ecg_circ_RD_idx %= (this.M + 1);
-
-      hp_circ_WR_idx++;
-      hp_circ_WR_idx %= (this.N + 1);
-
-
-      /* Low pass filtering */
-
-      // shift in new sample from high pass filter
-      lp_sum += hp_circ_buff[hp_circ_RD_idx] * hp_circ_buff[hp_circ_RD_idx];
-
-      if (i < this.N) {
-        // first fill buffer with enough points for LP filter
-        next_eval_pt = 0;
-
+      for (let j = i; j < index; j++) {
+        if (data[j] > max) max = data[j];
       }
-      else {
-        // shift out oldest data point
-        let tmp = hp_circ_RD_idx - this.N;
-        if (tmp < 0) {
-          tmp += this.N + 1;
+      let added = false;
+      for (let j = i; j < index; j++) {
+        if (data[j] > treshold && !added) {
+          QRS[j] = 1;
+          added = true;
         }
-        lp_sum -= hp_circ_buff[tmp] * hp_circ_buff[tmp];
-
-        next_eval_pt = lp_sum;
-      }
-
-      hp_circ_RD_idx++;
-      hp_circ_RD_idx %= (this.N + 1);
-      /* Adapative thresholding beat detection */
-      // set initial threshold				
-
-
-      if (i < this.WINSIZE) {
-        if (next_eval_pt > treshold) {
-          treshold = next_eval_pt;
+        else {
+          QRS[j] = 0;
         }
       }
 
-      // check if detection hold off period has passed
-      if (triggered) {
-        trig_time++;
+      let gamma = (Math.random() > 0.5) ? 0.15 : 0.20;
+      let alpha = 0.01 + (Math.random() * ((0.1 - 0.01)));
 
-        if (trig_time >= 100) {
-          triggered = false;
-          trig_time = 0;
-        }
-      }
+      treshold = alpha * gamma * max + (1 - alpha) * treshold;
 
-      // find if we have a new max
-      if (next_eval_pt > win_max) win_max = next_eval_pt;
-
-      // find if we are above adaptive threshold
-      if (next_eval_pt > treshold && !triggered) {
-        QRS[i] = 1;
-
-        triggered = true;
-      }
-      else {
-        QRS[i] = 0;
-      }
-      // adjust adaptive threshold using max of signal found 
-      // in previous window            
-      if (++win_idx > this.WINSIZE) {
-        // weighting factor for determining the contribution of
-        // the current peak value to the threshold adjustment
-        let gamma = 0.175;
-
-        // forgetting factor - 
-        // rate at which we forget old observations
-        let alpha = 0.01 + (Math.random() * ((0.1 - 0.01)));
-
-        treshold = alpha * gamma * win_max + (1 - alpha) * treshold;
-
-        // reset current window ind
-        win_idx = 0;
-        win_max = -10000000;
-      }
     }
 
-    for (let i = 0; i < QRS.length; i++) {
-      if (QRS[i] != 0) {
-      }
-    }
-
-
-
-
-
+    return QRS;
 
 
   }
 
-  public filterStage(data) {
+  public calculateBPMLinear(beats, period) {
 
-    for (let i = 0; i < data.length; i++) {
-
-      if (!data[0]) {
-        data[i] = data[i] + 2 * data[i - 1] + data[i] / 4
-
-      }
-
-    }
-
-    return data
+    let multiplier = 60 / period;
+    let bpm = beats * multiplier
+    return bpm
 
   }
-
-  public differentiation(data){
-    for(let i = 0 ; i< data.length ; i++){
-      if(!data[0]){
-        data[i] = data[i]- data[i-1]
-      }
-    }
-
-    for(let i = 0 ; i< data.length ; i++){
-      if(!data[0]){
-        data[i] = data[i]- data[i-1]
-      }
-    }
-
-    return data
-  }
-
-  public squariation(data){
-    for(let i = 0; i< data.length ; i++){
-      data[i] = Math.pow(data[i],2)
-    }
-    return data
-  }
-
-  public thresholdchecker(data){
-    for(let i = 0 ; i < data.length;i++){
-      if(data[i] < 100){
-        data[i]= 0
-      }
-    }
-  }
-
-   
 
 
 }

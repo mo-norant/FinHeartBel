@@ -26,57 +26,18 @@ public class GreetingController {
     return String.valueOf(random.nextInt());
   }
 
-  @RequestMapping("/momo")
-  public void nieuwalgo() {
-    QRS_test qrs_test = new QRS_test();
-  }
 
 
   @RequestMapping("/mo")
-  public String aangekomen() {
+  public void aangekomen() {
 
 
-    int frequency = 300;
 
-    while (frequency < 2200) {
-    QRSDetector2 qrsDetector = OSEAFactory.createQRSDetector2(frequency);
-    ArrayList<String> list = getECGarray();
+  lowPass(highPass(getECGarray(),getFrequencylocal());
 
 
 
 
-      for (int i = 0; i < list.size(); i++) {
-        int result = qrsDetector.QRSDet(Integer.valueOf(list.get(i)));
-        if (result != 0) {
-          System.out.println("Freq" + Integer.toString(frequency) + " @ A QRS-Complex was detected at sample: " + (i - result));
-          return "Freq" + Integer.toString(frequency) + " @ A QRS-Complex was detected at sample: " + (i - result);
-
-        }
-      }
-
-      BeatDetectionAndClassification bdac = OSEAFactory.createBDAC(frequency, frequency / 2);
-      for (int i = 0; i < list.size(); i++) {
-        BeatDetectionAndClassification.BeatDetectAndClassifyResult result = bdac.BeatDetectAndClassify(Integer.valueOf(list.get(i)));
-        if (result.samplesSinceRWaveIfSuccess != 0) {
-          int qrsPosition = i - result.samplesSinceRWaveIfSuccess;
-          if (result.beatType == ECGCODES.UNKNOWN) {
-            System.out.println("Freq" + Integer.toString(frequency) + " @ A unknown beat type was detected at sample: " + qrsPosition);
-            return "Freq" + Integer.toString(frequency) + " @ A unknown beat type was detected at sample: " + qrsPosition;
-          } else if (result.beatType == ECGCODES.NORMAL) {
-            System.out.println("Freq" + Integer.toString(frequency) + " @ A normal beat type was detected at sample: " + qrsPosition);
-            return "Freq" + Integer.toString(frequency) + " @ A normal beat type was detected at sample: " + qrsPosition;
-          } else if (result.beatType == ECGCODES.PVC) {
-            System.out.println("Freq" + Integer.toString(frequency) + " @ A premature ventricular contraction was detected at sample: " + qrsPosition);
-            return "Freq" + Integer.toString(frequency) + " @ A premature ventricular contraction was detected at sample: " + qrsPosition;
-
-          }
-        }
-      }
-      frequency+=50;
-
-    }
-
-    return "";
   }
 
 
@@ -104,6 +65,7 @@ public class GreetingController {
 
   }
 
+  static final int M = 5;
 
   @SuppressWarnings("unchecked")
   public ArrayList getECGarray() {
@@ -135,6 +97,114 @@ public class GreetingController {
     }
     return null;
   }
+
+  public static float[] highPass(int[] sig0, int nsamp) {
+    float[] highPass = new float[nsamp];
+    float constant = (float) 1/M;
+
+    for(int i=0; i<sig0.length; i++) {
+      float y1 = 0;
+      float y2 = 0;
+
+      int y2_index = i-((M+1)/2);
+      if(y2_index < 0) {
+        y2_index = nsamp + y2_index;
+      }
+      y2 = sig0[y2_index];
+
+      float y1_sum = 0;
+      for(int j=i; j>i-M; j--) {
+        int x_index = i - (i-j);
+        if(x_index < 0) {
+          x_index = nsamp + x_index;
+        }
+        y1_sum += sig0[x_index];
+      }
+
+      y1 = constant * y1_sum;
+      highPass[i] = y2 - y1;
+
+    }
+
+    return highPass;
+  }
+
+  // Low pass filter;
+  public static float[] lowPass(float[] sig0, int nsamp) {
+    float[] lowPass = new float[nsamp];
+    for(int i=0; i<sig0.length; i++) {
+      float sum = 0;
+      if(i+30 < sig0.length) {
+        for(int j=i; j<i+30; j++) {
+          float current = sig0[j] * sig0[j];
+          sum += current;
+        }
+      }
+      else if(i+30 >= sig0.length) {
+        int over = i+30 - sig0.length;
+        for(int j=i; j<sig0.length; j++) {
+          float current = sig0[j] * sig0[j];
+          sum += current;
+        }
+        for(int j=0; j<over; j++) {
+          float current = sig0[j] * sig0[j];
+          sum += current;
+        }
+      }
+
+      lowPass[i] = sum;
+    }
+
+    return lowPass;
+
+  }
+
+  public void QRS(float[] lowPass, int nsamp) {
+    int[] QRS = new int[nsamp];
+
+    double treshold = 0;
+
+    for(int i=0; i<200; i++) {
+      if(lowPass[i] > treshold) {
+        treshold = lowPass[i];
+      }
+    }
+
+    int frame = 250;
+
+    for(int i=0; i<lowPass.length; i+=frame) {
+      float max = 0;
+      int index = 0;
+      if(i + frame > lowPass.length) {
+        index = lowPass.length;
+      }
+      else {
+        index = i + frame;
+      }
+      for(int j=i; j<index; j++) {
+        if(lowPass[j] > max) max = lowPass[j];
+      }
+      boolean added = false;
+      for(int j=i; j<index; j++) {
+        if(lowPass[j] > treshold && !added) {
+          QRS[j] = 1;
+          added = true;
+        }
+        else {
+          QRS[j] = 0;
+        }
+      }
+
+      double gama = (Math.random() > 0.5) ? 0.15 : 0.20;
+      double alpha = 0.01 + (Math.random() * ((0.1 - 0.01)));
+
+      treshold = alpha * gama * max + (1 - alpha) * treshold;
+
+    }
+
+    System.out.println(QRS.toString());
+  }
+
 
 
 }

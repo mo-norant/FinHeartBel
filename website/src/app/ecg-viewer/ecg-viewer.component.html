@@ -41,11 +41,17 @@
               <h6>The by algorithm calculated count of beats <strong>{{beatcount}}</strong>.</h6>
               <h6>Interpolation of BPM-count <strong>{{BPM | number : '1.0-0'}} BPM</strong>.</h6>
               <h6>QRS complexes found at indexes:</h6>
-              <ul>
-                <li *ngFor="let index of beatIndexes">
-                  {{ index }}
-                </li>
-              </ul>
+              <div style='overflow:auto;height:80px;width:100px;'>
+
+                <ul>
+                  <li *ngFor="let index of beatIndexes">
+                    {{ index }}
+                  </li>
+                </ul>
+
+              </div>
+
+
             </div>
 
 

@@ -85,8 +85,8 @@ export class ECGViewerComponent implements OnInit {
   }
 
   selectionChanged(deviceValue) {
-    this.beatIndexes = []
-    this.BPM = 0;
+    console.log(this.beatIndexes.length)
+    console.log(this.BPM)
     this.currentPosition = this.ECGnames.indexOf(deviceValue);
     this.currentECG = this.ECGs[this.currentPosition];
     this.ecgdata[0].data = this.currentECG.measurement1.sensor1;
@@ -94,15 +94,17 @@ export class ECGViewerComponent implements OnInit {
     let highpass = this.ecgtoolkit.highPass(5, this.ecgdata[0].data, 5);
     let lowpass = this.ecgtoolkit.lowPass(this.ecgdata[0].data, 5);
     let qrs = this.ecgtoolkit.QRS(this.ecgdata[0].data);
-    let tempcounter = 0
+    let tempcounter = 0;
+    this.beatIndexes.length = 0;
+    this.BPM = 0;
     for (var key in qrs) {
       tempcounter++
       if (qrs[key] != 0) {
         this.beatcount++
-        this.beatIndexes.push(tempcounter)
+        this.beatIndexes.push(tempcounter);
       }
     }
-
+    
     this.BPM = this.ecgtoolkit.calculateBPMLinear(this.beatcount,this.lineChartLabels.slice(-1)[0])
 
     this.show = true

@@ -1,0 +1,5 @@
+As requested an link to our Githubpage with the complete structure.
+https://github.com/mo-norant/FinHeartBel
+
+ The project has to 2 main folders. The website directory contains the sourcecode of the webapp written in Typescript, Angular2.
+ Administratie contains all the extra project information like the presentations etc.

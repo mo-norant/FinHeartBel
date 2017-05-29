@@ -109,7 +109,7 @@ export class ECGViewerComponent implements OnInit {
 
     this.show = true
   }
-
+ v
 
   getXaxis(ECG) {
     let period, xaxis = [];
